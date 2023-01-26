@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf build && cd ../phonebook/ && npm run build && cp -r build ../phonebook-backend",
     "deploy": "/home/jesus/.fly/bin/flyctl deploy",
+    "open": "/home/jesus/.fly/bin/flyctl open",
     "deploy:full": "npm run build:ui && npm run deploy",
     "logs:prod": "/home/jesus/.fly/bin/flyctl logs"
   },

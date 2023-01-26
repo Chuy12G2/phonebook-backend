@@ -29,6 +29,8 @@ const errorHandler = (error, req, res, next) => {
     console.error(error.name)
     if(error.name === 'CastError'){
         return res.status(404).send({ error: 'malformed id'})
+    }else if(error.name === 'ValidationError'){
+        return res.status(400).json({error: error.message})
     }
     next(error)
 }
@@ -69,12 +71,6 @@ app.post('/api/persons', (req, res) => {
     
     const body = req.body
     
-    if(body.name === undefined || body.phone === undefined){
-        return res.status(400).json({
-            error: 'content missing'
-        })
-    }
-
     const newPerson = new Person({
         name: body.name,
         phone: body.phone,
